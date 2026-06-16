@@ -41,8 +41,6 @@ docker/ → Deployment configuration
 
 ## Current Status
 
-Day 1 Completed:
-
 * Agentic AI concepts studied
 * Use case selected
 * Development environment configured
@@ -50,3 +48,26 @@ Day 1 Completed:
 * Phi-3 running locally
 * Project scaffold created
 * GitHub repository initialized
+
+## Model Decisions
+
+### Primary LLM
+Qwen 2.5 7B
+
+Reason:
+Selected after comparing Phi-3, Mistral 7B, Qwen 2.5 7B, and Llama 3.1 8B. Qwen produced the most detailed and professional customer-support responses.
+
+### Embedding Model
+nomic-embed-text
+
+Reason:
+Free, runs locally with Ollama, produces 768-dimensional embeddings, and is suitable for RAG pipelines.
+
+### Fine-Tuning Plan
+Use RAG for factual knowledge and prompt engineering for behavior. Consider QLoRA fine-tuning later for customer-support style adaptation.
+
+### Backup Model
+Phi-3
+
+Reason:
+Fastest model on available hardware and useful for development/testing.
