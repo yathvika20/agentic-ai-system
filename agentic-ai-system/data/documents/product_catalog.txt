@@ -1,0 +1,21 @@
+Product Catalog
+
+Wireless Mouse
+Price: ₹799
+Battery life: 12 months
+
+Mechanical Keyboard
+Price: ₹2499
+RGB backlight
+
+Noise Cancelling Headphones
+Price: ₹4999
+Battery backup: 30 hours
+
+USB-C Charger
+Price: ₹999
+Fast charging support
+
+Laptop Stand
+Price: ₹1499
+Adjustable height

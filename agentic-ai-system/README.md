@@ -2,72 +2,240 @@
 
 ## Overview
 
-This project is an AI Customer Support Agent built as part of an Agentic AI internship.
+This project is an AI-powered Customer Support Agent built during an Agentic AI internship.
 
-The system uses Retrieval-Augmented Generation (RAG) to retrieve relevant information from documents and generate accurate answers to user queries.
+The system combines Retrieval-Augmented Generation (RAG), tool calling, ReAct reasoning, and conversation memory to answer customer queries accurately using locally running open-source models.
+
+---
 
 ## Use Case
 
-Users ask questions about products, services, FAQs, or company policies.
+Users can ask questions related to:
 
-The AI agent:
+* Product information
+* Shipping details
+* Return policies
+* Refund procedures
+* Order tracking
+* Frequently Asked Questions
 
-1. Receives the user's question.
-2. Searches relevant documents.
-3. Retrieves useful context.
-4. Generates an accurate response using a language model.
+The agent performs the following steps:
+
+1. Receives the user's query
+2. Decides whether external information is needed
+3. Uses tools to retrieve relevant information
+4. Searches the knowledge base using RAG
+5. Reasons over retrieved information
+6. Produces a final answer
+7. Maintains conversation context across turns
+
+---
 
 ## Technology Stack
 
+### Core Technologies
+
 * Python
 * LangChain
-* LangGraph
-* ChromaDB
-* Sentence Transformers
 * Ollama
+* ChromaDB
+
+### Models
+
+* Qwen 2.5 7B
 * Phi-3
+* Llama 3.1 8B
+* nomic-embed-text
+
+### Memory
+
+* Conversation Buffer Memory
+* Session-based Memory
+* deque(maxlen=10)
+
+### Planned Technologies
+
+* LangGraph
 * FastAPI
 * Docker
 
+---
+
 ## Project Structure
 
-backend/ → Agent logic, APIs, and RAG components
+```text
+backend/
+│
+├── agents/
+│   ├── prompts.py
+│   ├── tools.py
+│   ├── react_agent.py
+│   ├── memory.py
+│   ├── agent_test.py
+│
+├── rag/
+│   ├── ingest.py
+│   ├── retriever.py
+│   ├── rag_test.py
+│
+frontend/
 
-frontend/ → User interface
+data/
 
-data/documents/ → Knowledge base documents
+docker/
+```
 
-docker/ → Deployment configuration
+---
 
-## Current Status
+## Features Implemented
 
-* Agentic AI concepts studied
-* Use case selected
-* Development environment configured
-* Ollama installed
-* Phi-3 running locally
-* Project scaffold created
-* GitHub repository initialized
+### Day 1
+
+* Development environment setup
+* Ollama installation
+* Git repository initialization
+* Project scaffold creation
+
+### Day 2
+
+* Compared Phi-3, Mistral 7B, Qwen 2.5 7B and Llama 3.1 8B
+* Selected Qwen 2.5 7B as primary model
+* Selected nomic-embed-text for embeddings
+
+### Day 3
+
+Implemented agent building blocks
+
+* System prompts
+* Structured schemas
+* Tool definitions
+* Tool testing
+
+### Day 4
+
+Implemented Retrieval-Augmented Generation
+
+* Document ingestion
+* Chunking
+* Embedding generation
+* ChromaDB vector storage
+* Retriever implementation
+* Knowledge base search tool
+
+### Day 5
+
+Implemented ReAct Agent
+
+Features:
+
+* Manual ReAct loop
+* Tool calling
+* RAG integration
+* Conversation memory
+* Session-based memory
+* Window buffer memory
+* Multi-turn conversations
+
+Tools available:
+
+* search_knowledge_base
+* check_order_status
+* escalate_to_human
+
+---
+
+## ReAct Workflow
+
+```text
+User Query
+    ↓
+LLM
+    ↓
+Tool Selection
+    ↓
+Knowledge Base Search
+    ↓
+Observation
+    ↓
+LLM Reasoning
+    ↓
+Final Answer
+```
+
+---
+
+## Memory Workflow
+
+```text
+Session ID
+    ↓
+ConversationMemory
+    ↓
+deque(maxlen=10)
+    ↓
+Conversation History
+    ↓
+ReAct Agent
+```
+
+---
 
 ## Model Decisions
 
 ### Primary LLM
+
 Qwen 2.5 7B
 
 Reason:
-Selected after comparing Phi-3, Mistral 7B, Qwen 2.5 7B, and Llama 3.1 8B. Qwen produced the most detailed and professional customer-support responses.
+
+Produced the most professional and detailed customer-support responses among tested models.
+
+---
 
 ### Embedding Model
+
 nomic-embed-text
 
 Reason:
-Free, runs locally with Ollama, produces 768-dimensional embeddings, and is suitable for RAG pipelines.
 
-### Fine-Tuning Plan
-Use RAG for factual knowledge and prompt engineering for behavior. Consider QLoRA fine-tuning later for customer-support style adaptation.
+* Free
+* Runs locally using Ollama
+* Produces 768-dimensional embeddings
+* Suitable for RAG systems
+
+---
 
 ### Backup Model
+
 Phi-3
 
 Reason:
-Fastest model on available hardware and useful for development/testing.
+
+Fastest model on available hardware and useful during development.
+
+---
+
+## Current Status
+
+### Completed
+
+* Environment setup
+* Local LLM execution with Ollama
+* ChromaDB integration
+* RAG pipeline
+* ReAct agent
+* Tool calling
+* Conversation memory
+* Session memory
+* Multi-turn chat support
+
+### Upcoming
+
+* LangGraph stateful memory
+* FastAPI backend
+* Streamlit frontend
+* Docker deployment
+* Evaluation and benchmarking
+
+```
+```
