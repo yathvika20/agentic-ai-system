@@ -12,12 +12,12 @@ The system combines Retrieval-Augmented Generation (RAG), tool calling, ReAct re
 
 Users can ask questions related to:
 
-* Product information
-* Shipping details
-* Return policies
-* Refund procedures
-* Order tracking
-* Frequently Asked Questions
+- Product information
+- Shipping details
+- Return policies
+- Refund procedures
+- Order tracking
+- Frequently Asked Questions
 
 The agent performs the following steps:
 
@@ -35,29 +35,29 @@ The agent performs the following steps:
 
 ### Core Technologies
 
-* Python
-* LangChain
-* Ollama
-* ChromaDB
+- Python
+- LangChain
+- Ollama
+- ChromaDB
 
 ### Models
 
-* Qwen 2.5 7B
-* Phi-3
-* Llama 3.1 8B
-* nomic-embed-text
+- Llama 3.1 8B
+- Qwen 2.5 7B
+- Phi-3
+- nomic-embed-text
 
 ### Memory
 
-* Conversation Buffer Memory
-* Session-based Memory
-* deque(maxlen=10)
+- Conversation Buffer Memory
+- Session-based Memory
+- deque(maxlen=10)
 
 ### Planned Technologies
 
-* LangGraph
-* FastAPI
-* Docker
+- LangGraph
+- FastAPI
+- Docker
 
 ---
 
@@ -91,36 +91,36 @@ docker/
 
 ### Day 1
 
-* Development environment setup
-* Ollama installation
-* Git repository initialization
-* Project scaffold creation
+- Development environment setup
+- Ollama installation
+- Git repository initialization
+- Project scaffold creation
 
 ### Day 2
 
-* Compared Phi-3, Mistral 7B, Qwen 2.5 7B and Llama 3.1 8B
-* Selected Qwen 2.5 7B as primary model
-* Selected nomic-embed-text for embeddings
+- Compared Phi-3, Mistral 7B, Qwen 2.5 7B and Llama 3.1 8B
+- Selected Qwen 2.5 7B as preferred production model
+- Selected nomic-embed-text for embeddings
 
 ### Day 3
 
 Implemented agent building blocks
 
-* System prompts
-* Structured schemas
-* Tool definitions
-* Tool testing
+- System prompts
+- Structured schemas
+- Tool definitions
+- Tool testing
 
 ### Day 4
 
 Implemented Retrieval-Augmented Generation
 
-* Document ingestion
-* Chunking
-* Embedding generation
-* ChromaDB vector storage
-* Retriever implementation
-* Knowledge base search tool
+- Document ingestion
+- Chunking
+- Embedding generation
+- ChromaDB vector storage
+- Retriever implementation
+- Knowledge base search tool
 
 ### Day 5
 
@@ -128,19 +128,19 @@ Implemented ReAct Agent
 
 Features:
 
-* Manual ReAct loop
-* Tool calling
-* RAG integration
-* Conversation memory
-* Session-based memory
-* Window buffer memory
-* Multi-turn conversations
+- Manual ReAct loop
+- Tool calling
+- RAG integration
+- Conversation memory
+- Session-based memory
+- Window buffer memory
+- Multi-turn conversations
 
 Tools available:
 
-* search_knowledge_base
-* check_order_status
-* escalate_to_human
+- search_knowledge_base
+- check_order_status
+- escalate_to_human
 
 ---
 
@@ -180,15 +180,25 @@ ReAct Agent
 
 ---
 
-## Model Decisions
+## Models Used During Week 1
 
-### Primary LLM
+### Development Model
+
+Llama 3.1 8B
+
+Reason:
+
+Used during implementation because of stable LangChain tool-calling support.
+
+---
+
+### Preferred Production Model
 
 Qwen 2.5 7B
 
 Reason:
 
-Produced the most professional and detailed customer-support responses among tested models.
+Produced more professional and detailed customer-support responses during evaluation.
 
 ---
 
@@ -198,10 +208,7 @@ nomic-embed-text
 
 Reason:
 
-* Free
-* Runs locally using Ollama
-* Produces 768-dimensional embeddings
-* Suitable for RAG systems
+Runs locally with Ollama and works well for RAG pipelines.
 
 ---
 
@@ -219,23 +226,20 @@ Fastest model on available hardware and useful during development.
 
 ### Completed
 
-* Environment setup
-* Local LLM execution with Ollama
-* ChromaDB integration
-* RAG pipeline
-* ReAct agent
-* Tool calling
-* Conversation memory
-* Session memory
-* Multi-turn chat support
+- Environment setup
+- Local LLM execution with Ollama
+- ChromaDB integration
+- RAG pipeline
+- ReAct agent
+- Tool calling
+- Conversation memory
+- Session memory
+- Multi-turn chat support
 
 ### Upcoming
 
-* LangGraph stateful memory
-* FastAPI backend
-* Streamlit frontend
-* Docker deployment
-* Evaluation and benchmarking
-
-```
-```
+- LangGraph stateful memory
+- FastAPI backend
+- Streamlit frontend
+- Docker deployment
+- Evaluation and benchmarking
