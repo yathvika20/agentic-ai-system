@@ -1,245 +1,253 @@
-# AI Customer Support Agent with RAG
+AI Customer Support Agent with RAG, LangGraph and FastAPI
+Overview
 
-## Overview
+AI Customer Support Agent is an end-to-end agentic AI system designed to provide intelligent customer support using Retrieval-Augmented Generation (RAG), ReAct reasoning, tool calling, conversation memory, LangGraph workflows, and a production-ready FastAPI backend.
 
-This project is an AI-powered Customer Support Agent built during an Agentic AI internship.
+The system uses locally running open-source Large Language Models through Ollama and combines retrieval, reasoning, memory, and API serving to generate context-aware responses.
 
-The system combines Retrieval-Augmented Generation (RAG), tool calling, ReAct reasoning, and conversation memory to answer customer queries accurately using locally running open-source models.
+Features
+Retrieval-Augmented Generation (RAG)
+Document ingestion pipeline
+Text chunking
+Embedding generation
+ChromaDB vector storage
+Semantic similarity search
+Knowledge base retrieval
+ReAct Agent
 
----
+Implemented features
 
-## Use Case
+Manual ReAct loop
+Tool selection
+Observation generation
+Multi-step reasoning
+Final answer synthesis
+Conversation Memory
 
-Users can ask questions related to:
+Supports
 
-- Product information
-- Shipping details
-- Return policies
-- Refund procedures
-- Order tracking
-- Frequently Asked Questions
+Session-based memory
+Window buffer memory
+Multi-turn conversations
+Conversation history retention
 
-The agent performs the following steps:
+Memory implementation
 
-1. Receives the user's query
-2. Decides whether external information is needed
-3. Uses tools to retrieve relevant information
-4. Searches the knowledge base using RAG
-5. Reasons over retrieved information
-6. Produces a final answer
-7. Maintains conversation context across turns
+deque(maxlen=10)
+LangGraph Workflow
 
----
+Implemented nodes
 
-## Technology Stack
+Agent Node
+Tool Node
+Critic Node
 
-### Core Technologies
+Capabilities
 
-- Python
-- LangChain
-- Ollama
-- ChromaDB
+Stateful execution
+Conditional routing
+Tool invocation
+Response critique
+Hallucination reduction
+FastAPI Backend
 
-### Models
+Implemented endpoints
 
-- Llama 3.1 8B
-- Qwen 2.5 7B
-- Phi-3
-- nomic-embed-text
+GET /health
 
-### Memory
+POST /api/v1/chat
 
-- Conversation Buffer Memory
-- Session-based Memory
-- deque(maxlen=10)
+WebSocket /api/v1/ws/{session_id}
 
-### Planned Technologies
+Features
 
-- LangGraph
-- FastAPI
-- Docker
+Pydantic request validation
+Pydantic response validation
+OpenAPI documentation
+Swagger UI integration
+Token streaming using WebSockets
+Health checks
+Global exception handling
+CORS middleware
+Tools Implemented
+search_knowledge_base
 
----
+Performs semantic search over ChromaDB and retrieves relevant documents.
 
-## Project Structure
+check_order_status
 
-```text
+Returns predefined order tracking information.
+
+escalate_to_human
+
+Escalates customer requests requiring human intervention.
+
+Models Used
+LLMs
+Llama 3.1 8B
+
+Used for
+
+Tool calling
+ReAct agent
+LangGraph workflow
+FastAPI backend
+Qwen 2.5 7B
+
+Preferred production model
+
+Reason
+
+Generated more professional and detailed customer-support responses during evaluation.
+
+Phi-3
+
+Used as a lightweight backup model.
+
+Reason
+
+Fast inference speed on available hardware.
+
+Embedding Model
+nomic-embed-text
+
+Used for
+
+Embedding generation
+Vector similarity search
+ChromaDB integration
+Technologies Used
+Programming Language
+Python
+Frameworks
+LangChain
+LangGraph
+FastAPI
+Vector Database
+ChromaDB
+Local Model Serving
+Ollama
+API Development
+FastAPI
+Pydantic
+HTTPX
+WebSockets
+Memory Management
+Conversation Buffer Memory
+Session Memory
+Development Tools
+VS Code
+Git
+GitHub
+Project Architecture
+ReAct Workflow
+User Query
+      │
+      ▼
+LLM
+      │
+      ▼
+Tool Selection
+      │
+      ▼
+Knowledge Base Search
+      │
+      ▼
+Observation
+      │
+      ▼
+LLM Reasoning
+      │
+      ▼
+Final Answer
+LangGraph Workflow
+User Query
+     │
+     ▼
+ Agent Node
+     │
+     ▼
+Conditional Routing
+     │
+ ┌───┴────┐
+ ▼        ▼
+Tools   Critic
+ │        │
+ └────┬───┘
+      ▼
+Final Response
+FastAPI Architecture
+User
+ │
+ ▼
+POST /api/v1/chat
+ │
+ ▼
+FastAPI
+ │
+ ▼
+Pydantic Validation
+ │
+ ▼
+LangGraph
+ │
+ ├── Agent Node
+ │
+ ├── Tool Node
+ │
+ └── Critic Node
+ │
+ ▼
+LLM
+ │
+ ▼
+ChatResponse
+Project Structure
 backend/
-│
+
 ├── agents/
 │   ├── prompts.py
 │   ├── tools.py
-│   ├── react_agent.py
 │   ├── memory.py
-│   ├── agent_test.py
+│   ├── react_agent.py
+│   ├── graph_agent.py
+│   ├── critic_graph.py
 │
 ├── rag/
 │   ├── ingest.py
 │   ├── retriever.py
-│   ├── rag_test.py
+│
+├── api/
+│   ├── main.py
+│   ├── models.py
+│   ├── dependencies.py
+│   └── routers/
+│       ├── chat.py
+│       └── health.py
 │
 frontend/
 
-data/
+docs/
 
 docker/
-```
 
----
-
-## Features Implemented
-
-### Day 1
-
-- Development environment setup
-- Ollama installation
-- Git repository initialization
-- Project scaffold creation
-
-### Day 2
-
-- Compared Phi-3, Mistral 7B, Qwen 2.5 7B and Llama 3.1 8B
-- Selected Qwen 2.5 7B as preferred production model
-- Selected nomic-embed-text for embeddings
-
-### Day 3
-
-Implemented agent building blocks
-
-- System prompts
-- Structured schemas
-- Tool definitions
-- Tool testing
-
-### Day 4
-
-Implemented Retrieval-Augmented Generation
-
-- Document ingestion
-- Chunking
-- Embedding generation
-- ChromaDB vector storage
-- Retriever implementation
-- Knowledge base search tool
-
-### Day 5
-
-Implemented ReAct Agent
-
-Features:
-
-- Manual ReAct loop
-- Tool calling
-- RAG integration
-- Conversation memory
-- Session-based memory
-- Window buffer memory
-- Multi-turn conversations
-
-Tools available:
-
-- search_knowledge_base
-- check_order_status
-- escalate_to_human
-
----
-
-## ReAct Workflow
-
-```text
-User Query
-    ↓
-LLM
-    ↓
-Tool Selection
-    ↓
-Knowledge Base Search
-    ↓
-Observation
-    ↓
-LLM Reasoning
-    ↓
-Final Answer
-```
-
----
-
-## Memory Workflow
-
-```text
-Session ID
-    ↓
-ConversationMemory
-    ↓
-deque(maxlen=10)
-    ↓
-Conversation History
-    ↓
-ReAct Agent
-```
-
----
-
-## Models Used During Week 1
-
-### Development Model
-
-Llama 3.1 8B
-
-Reason:
-
-Used during implementation because of stable LangChain tool-calling support.
-
----
-
-### Preferred Production Model
-
-Qwen 2.5 7B
-
-Reason:
-
-Produced more professional and detailed customer-support responses during evaluation.
-
----
-
-### Embedding Model
-
-nomic-embed-text
-
-Reason:
-
-Runs locally with Ollama and works well for RAG pipelines.
-
----
-
-### Backup Model
-
-Phi-3
-
-Reason:
-
-Fastest model on available hardware and useful during development.
-
----
-
-## Current Status
-
-### Completed
-
-- Environment setup
-- Local LLM execution with Ollama
-- ChromaDB integration
-- RAG pipeline
-- ReAct agent
-- Tool calling
-- Conversation memory
-- Session memory
-- Multi-turn chat support
-
-### Upcoming
-
-- LangGraph stateful memory
-- FastAPI backend
-- Streamlit frontend
-- Docker deployment
-- Evaluation and benchmarking
+data/
+Current Status
+Implemented
+Local LLM execution
+ChromaDB integration
+RAG pipeline
+Tool calling
+ReAct agent
+Session memory
+LangGraph workflow
+Critic node
+FastAPI backend
+WebSocket streaming
+Health monitoring
+Global exception handling
+Upcoming
+Redis session persistence
+React frontend
+Docker deployment
+Evaluation and benchmarking
