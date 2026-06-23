@@ -1,208 +1,227 @@
-AI Customer Support Agent with RAG, LangGraph and FastAPI
-Overview
+# AI Customer Support Agent with RAG
 
-AI Customer Support Agent is an end-to-end Agentic AI system designed to answer customer queries using Retrieval-Augmented Generation (RAG), ReAct reasoning, tool calling, conversation memory, LangGraph workflows, and a production-ready FastAPI backend.
+## Overview
 
-The project leverages locally running open-source Large Language Models through Ollama and combines retrieval, reasoning, tool usage, memory management, and API serving to provide accurate and context-aware customer support responses.
+This project is an AI Customer Support Agent built as part of an Agentic AI internship.
 
-Use Cases
+The system combines Retrieval-Augmented Generation (RAG), tool calling, ReAct reasoning, conversation memory, LangGraph workflows, and a production-ready FastAPI backend to answer customer queries accurately using locally running open-source models.
 
-The system can answer questions related to:
+---
 
-Product information
-Shipping details
-Return policies
-Refund procedures
-Order tracking
-Frequently Asked Questions
-Escalation to human agents
+## Use Case
 
-Example queries:
+Users ask questions related to:
 
-Where is my order 1001?
+* Product information
+* Shipping details
+* Return policies
+* Refund procedures
+* Order tracking
+* Frequently Asked Questions
+* Escalation to human agents
 
-How long does shipping take?
+The AI agent:
 
-Can I return a product after 30 days?
+1. Receives the user's question.
+2. Decides whether external information is needed.
+3. Searches the knowledge base.
+4. Retrieves relevant context.
+5. Selects and invokes tools if required.
+6. Generates a final response.
+7. Maintains conversation history across turns.
 
-Tell me about your refund policy.
-Features
-Retrieval-Augmented Generation (RAG)
+---
 
-Implemented features
+## Technology Stack
 
-Document ingestion pipeline
-Text chunking
-Embedding generation
-ChromaDB vector storage
-Semantic similarity search
-Knowledge base retrieval
-Tool Calling
+### Frameworks
 
-Implemented tools
+* Python
+* LangChain
+* LangGraph
+* FastAPI
 
-search_knowledge_base
+### Vector Database
+
+* ChromaDB
+
+### Local Model Serving
+
+* Ollama
+
+### API Development
+
+* FastAPI
+* Pydantic
+* HTTPX
+* WebSockets
+
+### Development Tools
+
+* Git
+* GitHub
+* VS Code
+
+---
+
+## Models Used
+
+### Development Model
+
+Llama 3.1 8B
+
+Reason:
+
+Used during implementation because of stable LangChain tool-calling support.
+
+### Preferred Production Model
+
+Qwen 2.5 7B
+
+Reason:
+
+Selected after comparing Phi-3, Mistral 7B, Qwen 2.5 7B and Llama 3.1 8B.
+
+Produced the most detailed and professional customer-support responses.
+
+### Embedding Model
+
+nomic-embed-text
+
+Reason:
+
+Runs locally with Ollama and produces high-quality embeddings for RAG pipelines.
+
+### Backup Model
+
+Phi-3
+
+Reason:
+
+Fastest model on available hardware and useful during development.
+
+---
+
+## Features Implemented
+
+### Retrieval-Augmented Generation (RAG)
+
+* Document ingestion
+* Chunking
+* Embedding generation
+* ChromaDB vector storage
+* Semantic similarity search
+* Knowledge base retrieval
+
+### ReAct Agent
+
+* Manual ReAct loop
+* Tool calling
+* Observation generation
+* Final answer synthesis
+* Multi-turn reasoning
+
+### Conversation Memory
+
+* Conversation Buffer Memory
+* Session Memory
+* Window Buffer Memory
+* Multi-turn conversations
+* deque(maxlen=10)
+
+### LangGraph Workflow
+
+Implemented nodes:
+
+* Agent Node
+* Tool Node
+* Critic Node
+
+Capabilities:
+
+* Stateful execution
+* Conditional routing
+* Tool invocation
+* Response critique
+* Hallucination reduction
+
+### FastAPI Backend
+
+Implemented endpoints:
+
+* GET /health
+* POST /api/v1/chat
+* WebSocket /api/v1/ws/{session_id}
+
+Implemented features:
+
+* Request validation
+* Response validation
+* Swagger documentation
+* WebSocket token streaming
+* Health checks
+* Global exception handling
+* CORS middleware
+
+---
+
+## Tools Implemented
+
+### search_knowledge_base
 
 Performs semantic search over ChromaDB and retrieves relevant documents.
 
-check_order_status
+### check_order_status
 
-Returns order tracking information.
+Returns predefined order tracking information.
 
-escalate_to_human
+### escalate_to_human
 
 Escalates customer requests requiring human intervention.
 
-ReAct Agent
+---
 
-Implemented features
+## Project Structure
 
-Manual ReAct loop
-Tool selection
-Observation generation
-Multi-step reasoning
-Final answer synthesis
-Conversation Memory
-
-Supports
-
-Session-based memory
-Window buffer memory
-Multi-turn conversations
-Conversation history retention
-
-Memory implementation
-
-deque(maxlen=10)
-LangGraph Workflow
-
-Implemented nodes
-
-Agent Node
-Tool Node
-Critic Node
-
-Capabilities
-
-Stateful execution
-Conditional routing
-Tool invocation
-Response critique
-Hallucination reduction
-Workflow
-FastAPI Backend
-
-Implemented endpoints
-
-GET /health
-
-POST /api/v1/chat
-
-WebSocket /api/v1/ws/{session_id}
-
-Implemented features
-
-Pydantic request validation
-Pydantic response validation
-OpenAPI documentation
-Swagger UI integration
-Token streaming using WebSockets
-Health checks
-Global exception handling
-CORS middleware
-Models Used
-Development Model
-Llama 3.1 8B
-
-Used for
-
-Tool calling
-ReAct agent
-LangGraph workflow
-FastAPI backend
-
-Reason
-
-Stable support for LangChain tool calling and agent workflows.
-
-Preferred Production Model
-Qwen 2.5 7B
-
-Reason
-
-Generated more professional and detailed customer-support responses during evaluation.
-
-Embedding Model
-nomic-embed-text
-
-Used for
-
-Embedding generation
-Vector similarity search
-ChromaDB integration
-Backup Model
-Phi-3
-
-Reason
-
-Fastest inference speed on available hardware.
-
-Technology Stack
-Programming Language
-Python
-Frameworks
-LangChain
-LangGraph
-FastAPI
-Vector Database
-ChromaDB
-Local Model Serving
-Ollama
-API Development
-FastAPI
-Pydantic
-HTTPX
-WebSockets
-Memory
-Conversation Buffer Memory
-Session Memory
-deque(maxlen=10)
-Development Tools
-VS Code
-Git
-GitHub
-Project Architecture
-ReAct Workflow
-FastAPI Architecture
-Project Structure
 backend/
 
 ├── agents/
+
 │   ├── prompts.py
+
 │   ├── tools.py
-│   ├── memory.py
+
 │   ├── react_agent.py
+
+│   ├── memory.py
+
 │   ├── graph_agent.py
+
 │   ├── critic_graph.py
-│
+
 ├── rag/
+
 │   ├── ingest.py
+
 │   ├── retriever.py
-│
+
 ├── api/
+
 │   ├── main.py
+
 │   ├── models.py
-│   ├── dependencies.py
-│   │
+
 │   └── routers/
+
 │       ├── chat.py
+
 │       └── health.py
-│
+
 frontend/
 
-docs/
-
 docker/
+
+docs/
 
 data/
 
@@ -210,36 +229,145 @@ test_ws.py
 
 README.md
 
-Running the Application
-Start Ollama
-ollama serve
-Run FastAPI
-uvicorn backend.api.main:app --reload
-Swagger UI
-http://localhost:8000/docs
-WebSocket Client
-python test_ws.py
-Current Status
-Implemented
-Local LLM execution
-ChromaDB integration
-RAG pipeline
-Tool calling
-ReAct agent
-Session memory
-LangGraph workflow
-Critic node
-FastAPI backend
-WebSocket streaming
-Health monitoring
-Global exception handling
+---
+
+## LangGraph Workflow
+
+```text
+START
+
+↓
+
+Agent
+
+↓
+
+Conditional Routing
+
+↓
+
+Tools
+
+↓
+
+Critic
+
+↓
+
+END
+```
+
+## ReAct Workflow
+
+```text
+User Query
+
+↓
+
+LLM
+
+↓
+
+Tool Selection
+
+↓
+
+Knowledge Base Search
+
+↓
+
+Observation
+
+↓
+
+LLM Reasoning
+
+↓
+
+Final Answer
+```
+
+## FastAPI Workflow
+
+```text
+User
+
+↓
+
+POST /api/v1/chat
+
+↓
+
+FastAPI
+
+↓
+
+Pydantic Validation
+
+↓
+
+LangGraph
+
+↓
+
+LLM
+
+↓
+
+ChatResponse
+```
+
+---
+
+## Current Status
+
+Completed
+
+* Local LLM execution
+* ChromaDB integration
+* RAG pipeline
+* Tool calling
+* ReAct agent
+* Conversation memory
+* Session memory
+* LangGraph workflow
+* Critic node
+* FastAPI backend
+* WebSocket streaming
+* Health monitoring
+* Global exception handling
+
 Upcoming
-Redis session persistence
-React frontend
-Docker deployment
-Evaluation and benchmarking
-Screenshots
-Swagger Documentation
-![Swagger UI](docs/swagger_day7.png)
-LangGraph Workflow
-![LangGraph](docs/agent_graph.png)
+
+* Redis session persistence
+* React frontend
+* Docker deployment
+* Evaluation and benchmarking
+
+---
+
+## Commands
+
+Start Ollama
+
+```bash
+ollama serve
+```
+
+Run FastAPI
+
+```bash
+uvicorn backend.api.main:app --reload
+```
+
+Swagger UI
+
+```text
+http://localhost:8000/docs
+```
+
+Run WebSocket client
+
+```bash
+python test_ws.py
+```
