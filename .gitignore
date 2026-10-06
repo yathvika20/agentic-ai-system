@@ -1,0 +1,30 @@
+# Python environments
+agentic-env/
+final-env/
+internship-env/
+ragas-env/
+ragas-final-env/
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# ChromaDB
+agentic-ai-system/data/chroma_db/
+
+# Training/generated data
+agentic-ai-system/data/training/
+
+# Node
+agentic-ai-system/frontend/node_modules/
+agentic-ai-system/frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
