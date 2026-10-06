@@ -113,3 +113,7 @@ The frontend communicates with the FastAPI backend using WebSocket communication
           │
           ▼
       Frontend
+
+## Project Output
+
+![AI Customer Support Agent](screenshot/project-output.png)
