@@ -1,38 +1,26 @@
 from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage
 
-from tools import (
-    search_knowledge_base,
+from backend.agents.tools import (
     check_order_status,
-    escalate_to_human
+    search_knowledge_base,
+    escalate_to_human,
 )
 
-tools = [
-    search_knowledge_base,
+llm = ChatOllama(
+    model="llama3.1:8b"
+).bind_tools([
     check_order_status,
-    escalate_to_human
-]
+    search_knowledge_base,
+    escalate_to_human,
+])
 
-llm = ChatOllama(model="llama3.1:8b")
+response = llm.invoke([
+    HumanMessage(content="Where is my order 1001?")
+])
 
-llm_with_tools = llm.bind_tools(tools)
+print("\n===== RESPONSE =====")
+print(response)
 
-response = llm_with_tools.invoke(
-    "Where is my order #5678?"
-)
-
-print("Tool Calls:")
+print("\n===== TOOL CALLS =====")
 print(response.tool_calls)
-
-print("\nContent:")
-print(response.content)
-
-
-# Execute the selected tool
-print("\nExecuting Tool...")
-
-tool_call = response.tool_calls[0]
-
-result = check_order_status.invoke(tool_call["args"])
-
-print("\nTool Result:")
-print(result)

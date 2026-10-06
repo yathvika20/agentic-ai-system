@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      CHROMA_HOST: chromadb
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - ollama
+      - chromadb
+      - redis
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3002:5173"
+    depends_on:
+      - backend
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6380:6379"
+
+  langfuse:
+    image: langfuse/langfuse:latest
+    container_name: langfuse
+    ports:
+      - "3001:3000"
+
+volumes:
+  ollama_data:
+  chroma_data:

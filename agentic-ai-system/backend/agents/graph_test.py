@@ -8,9 +8,7 @@ config = {
 }
 
 questions = [
-    "What is your return policy?",
-    "And how long does shipping take?",
-    "My order #777 has not arrived"
+    "Where is my order 1001?"
 ]
 
 for question in questions:

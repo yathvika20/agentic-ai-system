@@ -1,0 +1,80 @@
+# ==========================
+# Core AI Framework
+# ==========================
+langchain==0.3.26
+langchain-core==0.3.68
+langchain-community==0.3.27
+langchain-openai==0.3.28
+langchain-text-splitters==0.3.8
+
+# ==========================
+# LangGraph
+# ==========================
+langgraph==0.6.5
+
+# ==========================
+# Ollama
+# ==========================
+langchain-ollama==0.2.3
+ollama==0.4.7
+
+# ==========================
+# Vector Database
+# ==========================
+chromadb==1.0.15
+
+# ==========================
+# PyTorch (CPU)
+# ==========================
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.7.1
+
+# ==========================
+# Embeddings
+# ==========================
+
+sentence-transformers==5.0.0
+
+# ==========================
+# FastAPI
+# ==========================
+fastapi==0.116.1
+uvicorn==0.35.0
+websockets==15.0.1
+slowapi==0.1.9
+
+# ==========================
+# Environment Variables
+# ==========================
+python-dotenv==1.1.1
+
+# ==========================
+# Langfuse
+# ==========================
+langfuse==3.3.4
+
+# ==========================
+# RAGAS
+# ==========================
+ragas==0.2.15
+datasets==4.0.0
+openai==1.97.1
+tiktoken==0.9.0
+
+# ==========================
+# Numerical
+# ==========================
+numpy==2.3.1
+pandas==2.3.1
+
+# ==========================
+# Utilities
+# ==========================
+pydantic==2.11.7
+requests==2.32.4
+httpx==0.28.1
+
+# ==========================
+# Google Vertex (required by RAGAS)
+# ==========================
+langchain-google-vertexai==2.0.27

@@ -1,0 +1,11 @@
+final-env/
+venv/
+__pycache__/
+*.pyc
+.git
+.gitignore
+data/
+node_modules/
+frontend/node_modules/
+backend/__pycache__/
+*.log

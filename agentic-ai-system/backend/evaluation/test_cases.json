@@ -1,0 +1,61 @@
+[
+    {
+        "input": "What is the return policy?",
+        "expected_contains": "30",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "How long does shipping take?",
+        "expected_contains": "5-7",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "Do you offer express shipping?",
+        "expected_contains": "2-3",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "Track order #1234",
+        "expected_contains": "shipped",
+        "tool_expected": "check_order_status"
+    },
+
+    {
+        "input": "How many days for refunds?",
+        "expected_contains": "5 business days",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "Can I return customized items?",
+        "expected_contains": "defective",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "What products are available?",
+        "expected_contains": "Mouse",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "Tell me about keyboards",
+        "expected_contains": "Keyboard",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "How can I contact support?",
+        "expected_contains": "support",
+        "tool_expected": "search_knowledge_base"
+    },
+
+    {
+        "input": "Do you provide tracking numbers?",
+        "expected_contains": "tracking",
+        "tool_expected": "search_knowledge_base"
+    }
+]

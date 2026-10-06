@@ -16,7 +16,10 @@ from langchain_core.messages import (
 
 agent_llm = ChatOllama(model="llama3.1:8b")
 
-critic_llm = ChatOllama(model="llama3.1:8b")
+critic_llm = ChatOllama(
+    model="llama3.1:8b",
+    base_url="http://ollama:11434"
+)
 
 
 ####################################################

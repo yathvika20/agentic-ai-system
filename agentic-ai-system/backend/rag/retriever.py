@@ -1,13 +1,17 @@
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
-
+import os
 
 class KnowledgeBaseRetriever:
 
     def __init__(self, persist_dir="data/chroma_db"):
 
         embeddings = OllamaEmbeddings(
-            model="nomic-embed-text"
+            model="nomic-embed-text",
+            base_url=os.getenv(
+                "OLLAMA_BASE_URL",
+                "http://localhost:11434"
+            )
         )
 
         self.vectorstore = Chroma(
